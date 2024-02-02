@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import AVKit
 
 class GameScene: SKScene {
     var conveyer: SKSpriteNode!
@@ -15,6 +16,7 @@ class GameScene: SKScene {
     var greenBox: SKSpriteNode!
     var blueBox: SKSpriteNode!
     var yellowBox: SKSpriteNode!
+    var trashBin : SKSpriteNode!
     
     var paperStack: SKSpriteNode!
     var waterBottle: SKSpriteNode!
@@ -35,7 +37,7 @@ class GameScene: SKScene {
     var slider2: SKSpriteNode!
     var slider3: SKSpriteNode!
     var pauseMenuExit: SKSpriteNode!
-    
+    let backgroundSound = SKAudioNode(fileNamed: "backgroundMusic")
     var scoreLabel: SKLabelNode!
     var score: Int = 0
     
@@ -61,9 +63,18 @@ class GameScene: SKScene {
     var isMusic: Bool = true
     var isSound: Bool = true
     
+   
+
+    // 2 - Play sound
+    
+    
     override func didMove(to view: SKView) {
         self.backgroundColor = UIColor(red: 145/255, green: 217/255, blue: 255/255, alpha: 1.0)
         setupGame()
+        
+        
+        self.addChild(backgroundSound)
+        
         
     }
     func createTexture(_ name:String) -> [SKTexture]{
@@ -120,20 +131,26 @@ class GameScene: SKScene {
         setUpBox(myBox: &greenBox, name: "greenBox", imageName: "NewPaperBin", x: 75)
         setUpBox(myBox: &blueBox, name: "blueBox", imageName: "NewPlasticBin", x: 200)
         setUpBox(myBox: &yellowBox, name: "yellowBox", imageName: "NewMetalBin", x: 325)
+        setUpBox(myBox: &trashBin, name: "trashBin", imageName: "TrashBin", x: 300, y: 154, zPosition: -3, myScale: 2.4)
 //        setUpScoreBox()
         setUpConveyer()
         setUpPause()
         setUpLife()
+        backgroundSound.run(SKAction.play())
         setUpIntro(delay: 2.0)
+        
     }
     func setUpConveyer(){
         conveyer = SKSpriteNode(imageNamed: "Conveyer1")
-        conveyer.position = CGPoint(x: 160, y: 50)
+        conveyer.position = CGPoint(x: 160, y: 65)
         conveyer.zPosition = -2
         conveyer.name = "conveyer"
         textures.append(SKTexture(imageNamed: "Conveyer1"))
         textures.append(SKTexture(imageNamed: "Conveyer2"))
         textures.append(SKTexture(imageNamed: "Conveyer3"))
+        textures.append(SKTexture(imageNamed: "Conveyer4"))
+        textures.append(SKTexture(imageNamed: "Conveyer5"))
+      
         
         conveyer.run(SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.1)), withKey: "moving")
                         
@@ -240,6 +257,23 @@ class GameScene: SKScene {
                         isHaptic = true
                     }
                 }
+                if (touchedSprite.name == "slider1") {
+                    if isMusic{
+                        slider1.removeFromParent()
+                        createPanelHelper(myName: &slider1, name: "slider1", imageName: "SliderOff", x: 65, y: 140)
+                        isMusic = false
+                        backgroundSound.run(SKAction.stop())
+                        
+                    }
+                    else{
+                        slider1.removeFromParent()
+                        createPanelHelper(myName: &slider1, name: "slider1", imageName: "SliderOn", x: 65, y: 140)
+                        
+                        isMusic = true
+                        backgroundSound.run(SKAction.play())
+                    }
+                }
+
                 
                 if (touchedSprite.name == "introExitButton"){
                     removeSetup()
@@ -350,7 +384,9 @@ class GameScene: SKScene {
                         }
                         else if selectedNode.name == "sodaCan" && node.name == "yellowBox"{
                             scoreHaptic()
-                            
+                        }
+                        else if selectedNode.name == "pizzaBox" && node.name == "trashBin"{
+                            scoreHaptic()
                         }
                         else{
                             gameOver()
@@ -402,13 +438,13 @@ class GameScene: SKScene {
 //        targetSquare.setScale(0.2)
 //        addChild(targetSquare)
 //    }
-    func setUpBox(myBox: inout SKSpriteNode!, name: String, imageName: String, x: Int = 100, y: Int = 500){
+    func setUpBox(myBox: inout SKSpriteNode!, name: String, imageName: String, x: Int = 100, y: Int = 500, zPosition: Int = 0 , myScale: CGFloat = 1){
         myBox = SKSpriteNode(imageNamed: imageName)
         myBox.position = CGPoint(x: x ,y: y)
-        myBox.zPosition = 0 // Place the square below the circle
+        myBox.zPosition = CGFloat(zPosition) // Place the square below the circle
         
         myBox.name = name
-        
+        myBox.setScale(myScale)
         boxNodes.append(myBox)
         addChild(myBox)
     }
@@ -425,29 +461,30 @@ class GameScene: SKScene {
         score += 1
 //        scoreLabel.text = "Score: \(score)"
     }
-    func spawnItem(myName: inout SKSpriteNode!, name: String, imageName: String, setScale: CGFloat = 0.1, x: Int = -60, y: Int = 105, isTrash: Bool) {
+    func spawnItem(myName: inout SKSpriteNode!, name: String, imageName: String, setScale: CGFloat = 0.1, x: Int = -60, y: Int = 120, isTrash: Bool) {
         myName = SKSpriteNode(imageNamed: imageName)
         myName.setScale(setScale)
         myName.position = CGPoint(x: x, y:y)
         myName.zPosition = 1
         myName.name = name
         
-        let moveRight = SKAction.moveTo(x: 420, duration: 5)
-        let wait = SKAction.wait(forDuration: 1)
+        let moveRight = SKAction.moveTo(x: 320, duration: 6)
+        let shrink = SKAction.resize(toWidth: 0,height : 0, duration: 2)
+        let wait = SKAction.wait(forDuration: 1.1)
         let remove = SKAction.removeFromParent()
         if isTrash{
             let completionAction = SKAction.run { [self] in
                 name == name ? incrementScore() : gameOver()
                 
             }
-            let moveSequence = SKAction.sequence([wait, moveRight, completionAction, remove])
+            let moveSequence = SKAction.sequence([wait, moveRight,shrink, completionAction, remove])
             myName.run(SKAction.repeatForever(moveSequence), withKey:"moving")
         }
         else{
             let completionAction = SKAction.run { [self] in
                 name == name ? gameOver() : incrementScore()
             }
-            let moveSequence = SKAction.sequence([wait, moveRight, completionAction, remove])
+            let moveSequence = SKAction.sequence([wait, moveRight, shrink, completionAction, remove])
             myName.run(SKAction.repeatForever(moveSequence), withKey:"moving")
         }
         
@@ -512,16 +549,16 @@ class GameScene: SKScene {
             if !levelOneSpawns.isEmpty{
                 
                 if levelOneSpawns.first == 0 {
-                    spawnItem(myName: &paperStack, name: "paperStack", imageName: "Paper_Stack",y: 95, isTrash: false)
+                    spawnItem(myName: &paperStack, name: "paperStack", imageName: "Paper_Stack",y: 110, isTrash: false)
                 }
                 if levelOneSpawns.first == 1 {
                     spawnItem(myName: &waterBottle, name: "waterBottle", imageName: "Water_Bottle", setScale: 0.15, isTrash: false)
                 }
                 if levelOneSpawns.first == 2 {
-                    spawnItem(myName: &sodaCan, name: "sodaCan", imageName: "Soda_Can",setScale: 0.15, y: 95, isTrash: false)
+                    spawnItem(myName: &sodaCan, name: "sodaCan", imageName: "Soda_Can",setScale: 0.15, y: 110, isTrash: false)
                 }
                 if levelOneSpawns.first == 3 {
-                    spawnItem(myName: &pizzaBox, name: "pizzaBox", imageName: "PizzaBoxTrash",setScale: 0.02, y: 95, isTrash: true)
+                    spawnItem(myName: &pizzaBox, name: "pizzaBox", imageName: "PizzaBoxTrash",setScale: 0.02, y: 110, isTrash: true)
                 }
                 
                 levelOneSpawns.removeFirst()
@@ -530,7 +567,7 @@ class GameScene: SKScene {
                //replace this with a win screen
                 
                 if selectedNode == nil && isPaused2{
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
                         LevelComplete.starAmount = self.life
                         self.view?.presentScene(LevelComplete(size: self.size))
                         

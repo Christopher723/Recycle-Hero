@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A41CBA62B6C38A800617FF9 /* LevelPreview.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3A41CBA52B6C38A800617FF9 /* LevelPreview.sks */; };
 		3A41CBA82B6C38AF00617FF9 /* LevelPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A41CBA72B6C38AF00617FF9 /* LevelPreview.swift */; };
+		3A41CBAC2B6D722800617FF9 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3A41CBAB2B6D722800617FF9 /* backgroundMusic.mp3 */; };
 		3A887FFA2B5F2E3200003C67 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3A887FF92B5F2E3200003C67 /* MenuScene.sks */; };
 		3A887FFC2B5F2FC200003C67 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A887FFB2B5F2FC200003C67 /* MenuScene.swift */; };
 		3A887FFE2B5F358200003C67 /* LevelSelect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3A887FFD2B5F358200003C67 /* LevelSelect.sks */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		3A41CBA52B6C38A800617FF9 /* LevelPreview.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelPreview.sks; sourceTree = "<group>"; };
 		3A41CBA72B6C38AF00617FF9 /* LevelPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPreview.swift; sourceTree = "<group>"; };
+		3A41CBAB2B6D722800617FF9 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		3A887FF92B5F2E3200003C67 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		3A887FFB2B5F2FC200003C67 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		3A887FFD2B5F358200003C67 /* LevelSelect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelSelect.sks; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				3AAE47082B5D7B320077A856 /* Main.storyboard */,
 				3AAE470B2B5D7B330077A856 /* Assets.xcassets */,
 				3AAE470D2B5D7B330077A856 /* LaunchScreen.storyboard */,
+				3A41CBAB2B6D722800617FF9 /* backgroundMusic.mp3 */,
 			);
 			path = Recylce2;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A41CBAC2B6D722800617FF9 /* backgroundMusic.mp3 in Resources */,
 				3AB4F8F22B69759700D771CF /* WorldSelect.sks in Resources */,
 				3AB4F8F82B6981FD00D771CF /* GameOver.sks in Resources */,
 				3AAE470A2B5D7B320077A856 /* Main.storyboard in Resources */,
