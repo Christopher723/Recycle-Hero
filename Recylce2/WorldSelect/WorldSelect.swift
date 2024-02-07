@@ -52,7 +52,7 @@ class WorldSelect: SKScene{
         chevronLeft.name = "chevronLeft"
         
         
-        select = SKSpriteNode(imageNamed: "Select")
+        select = SKSpriteNode(imageNamed: "LetsGo")
         
         select.position = CGPoint(x: self.size.width / 2, y: frame.height / 9.5)
         select.zPosition = 20

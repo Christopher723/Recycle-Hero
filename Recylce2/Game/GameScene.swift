@@ -22,8 +22,12 @@ class GameScene: SKScene {
     var waterBottle: SKSpriteNode!
     var sodaCan: SKSpriteNode!
     var pizzaBox: SKSpriteNode!
+    var whiteBag: SKSpriteNode!
+    var brownBag: SKSpriteNode!
+    var pizzaBite: SKSpriteNode!
     
     var introSheet:SKSpriteNode!
+    var howToPlay2: SKSpriteNode!
     var introExitButton: SKSpriteNode!
     var panel: SKSpriteNode!
     var resume: SKSpriteNode!
@@ -37,6 +41,7 @@ class GameScene: SKScene {
     var slider2: SKSpriteNode!
     var slider3: SKSpriteNode!
     var pauseMenuExit: SKSpriteNode!
+    var howToPlay2Exit :SKSpriteNode!
     let backgroundSound = SKAudioNode(fileNamed: "backgroundMusic")
     var scoreLabel: SKLabelNode!
     var score: Int = 0
@@ -45,7 +50,8 @@ class GameScene: SKScene {
     var selectedNode: SKNode?
     var moving: Int = 1
     var isPaused2: Bool = true
-    let nodeNames = ["sodaCan", "waterBottle","paperStack", "pizzaBox"]
+    let nodeNames = ["sodaCan", "waterBottle","paperStack", "pizzaBox", "whiteBag", "brownBag", "pizzaBite"]
+    let trashNodes = ["pizzaBox", "whiteBag", "brownBag","pizzaBite"]
     let boxNames = ["greenBox", "blueBox", "yellowBox"]
     var boxNodes: [SKSpriteNode] = []
     
@@ -53,7 +59,7 @@ class GameScene: SKScene {
     var lifeNodes: [SKSpriteNode] = []
     
     var life: Int = 3
-    var levelOneSpawns: [Int] = [3,1,0,2,1,0,3,2,1]
+    var levelOneSpawns: [Int] = [6, 4, 5,3,1,0,2,1,0,3,2,1]
     
     
     let heavyHaptic = UIImpactFeedbackGenerator(style: .heavy)
@@ -85,6 +91,20 @@ class GameScene: SKScene {
         }
         return frames
     }
+    func setUpHowToPlay2(){
+        howToPlay2 = SKSpriteNode(imageNamed: "HowToPlay2")
+        howToPlay2.name = "howToPlay2"
+        howToPlay2.position = CGPoint(x: self.frame.width/2.0, y: self.frame.height/2.0)
+        howToPlay2.zPosition = 59
+        
+        howToPlay2Exit  = SKSpriteNode(imageNamed: "PauseMenuExit")
+        howToPlay2Exit.position = CGPoint(x: 130, y: 260)
+        howToPlay2Exit.zPosition = 70
+        howToPlay2Exit.name = "howToPlay2Exit"
+        
+        addChild(howToPlay2)
+        howToPlay2.addChild(howToPlay2Exit)
+    }
     
     func setUpIntro(delay: CGFloat){
         self.enumerateChildNodes(withName: "conveyer"){node, stop in
@@ -104,6 +124,7 @@ class GameScene: SKScene {
         introExitButton.zPosition = 70
         introExitButton.name = "introExitButton"
         
+        
        
         addChild(introSheet)
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [self] in
@@ -115,6 +136,11 @@ class GameScene: SKScene {
     func removeSetup(){
         introSheet.removeFromParent()
         introExitButton.removeFromParent()
+        
+    }
+    func removeSetup2(){
+        howToPlay2Exit.removeFromParent()
+        howToPlay2.removeFromParent()
         isPaused2 = true
         self.enumerateChildNodes(withName: "conveyer"){node, stop in
             if let action = node.action(forKey: "moving"){
@@ -131,7 +157,7 @@ class GameScene: SKScene {
         setUpBox(myBox: &greenBox, name: "greenBox", imageName: "NewPaperBin", x: 75)
         setUpBox(myBox: &blueBox, name: "blueBox", imageName: "NewPlasticBin", x: 200)
         setUpBox(myBox: &yellowBox, name: "yellowBox", imageName: "NewMetalBin", x: 325)
-        setUpBox(myBox: &trashBin, name: "trashBin", imageName: "TrashBin", x: 300, y: 154, zPosition: -3, myScale: 2.4)
+        setUpBox(myBox: &trashBin, name: "trashBin", imageName: "Truck2", x: 420, y: 154, zPosition: -3, myScale: 0.07)
 //        setUpScoreBox()
         setUpConveyer()
         setUpPause()
@@ -273,12 +299,34 @@ class GameScene: SKScene {
                         backgroundSound.run(SKAction.play())
                     }
                 }
+                
+                
+                if (touchedSprite.name == "slider2") {
+                    if isSound{
+                        slider2.removeFromParent()
+                        createPanelHelper(myName: &slider2, name: "slider2", imageName: "SliderOff", x: 65, y: 70)
+                        isSound = false
+                        backgroundSound.run(SKAction.stop())
+                        
+                    }
+                    else{
+                        slider2.removeFromParent()
+                        createPanelHelper(myName: &slider2, name: "slider2", imageName: "SliderOn", x: 65, y: 70)
+                        isSound = true
+                        backgroundSound.run(SKAction.play())
+                    }
+                }
 
                 
                 if (touchedSprite.name == "introExitButton"){
                     removeSetup()
+                    setUpHowToPlay2()
+                }
+                if (touchedSprite.name == "howToPlay2Exit"){
+                    removeSetup2()
                 }
                 if (touchedSprite.name == "howToPlay"){
+                    panel.removeFromParent()
                     setUpIntro(delay: 0)
                 }
                 //check if sprite resumed is clicked. if so target all nodes with name and stop their skaction
@@ -335,6 +383,10 @@ class GameScene: SKScene {
                 
                 
                 
+                
+                
+                
+                
             }
             
             
@@ -385,7 +437,7 @@ class GameScene: SKScene {
                         else if selectedNode.name == "sodaCan" && node.name == "yellowBox"{
                             scoreHaptic()
                         }
-                        else if selectedNode.name == "pizzaBox" && node.name == "trashBin"{
+                        else if trashNodes.contains(selectedNode.name!) && node.name == "trashBin"{
                             scoreHaptic()
                         }
                         else{
@@ -559,6 +611,15 @@ class GameScene: SKScene {
                 }
                 if levelOneSpawns.first == 3 {
                     spawnItem(myName: &pizzaBox, name: "pizzaBox", imageName: "PizzaBoxTrash",setScale: 0.02, y: 110, isTrash: true)
+                }
+                if levelOneSpawns.first == 4 {
+                    spawnItem(myName: &whiteBag, name: "whiteBag", imageName: "TrashBag",setScale: 0.03, y: 120, isTrash: true)
+                }
+                if levelOneSpawns.first == 5 {
+                    spawnItem(myName: &whiteBag, name: "brownBag", imageName: "BrownBag",setScale: 0.03, y: 120, isTrash: true)
+                }
+                if levelOneSpawns.first == 6 {
+                    spawnItem(myName: &pizzaBite, name: "pizzaBite", imageName: "PizzaBite",setScale: 0.07, y: 110, isTrash: true)
                 }
                 
                 levelOneSpawns.removeFirst()
