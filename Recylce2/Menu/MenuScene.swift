@@ -16,11 +16,12 @@ class MenuScene: SKScene{
     var cloudNode2: SKSpriteNode!
     var cloudNode3: SKSpriteNode!
     var cloudNode4: SKSpriteNode!
+    var spaceShipNode: SKSpriteNode!
     
     
     func generateCloud(myName: inout SKSpriteNode!, imageName: String, setScale: CGFloat = 1, x: Int, y: Int, x2: CGFloat, duration: CGFloat){
         
-        let moveLeft = SKAction.moveTo(x: -60, duration: duration)
+        let moveLeft = SKAction.moveTo(x: -100, duration: duration)
         let respawn = SKAction.moveTo(x: x2, duration: 0)
         _ = SKAction.wait(forDuration: 1.1)
         let remove = SKAction.removeFromParent()
@@ -31,13 +32,32 @@ class MenuScene: SKScene{
         myName.position = CGPoint(x: x, y:y)
         myName.zPosition = 1
     
-        
-        
         addChild(myName)
         myName.run(SKAction.repeatForever(moveSequence))
 
     
     }
+    
+    
+    func spawnShip(myName: inout SKSpriteNode!, imageName: String, setScale: CGFloat = 1, x: Int, y: Int, x2: CGFloat, duration: CGFloat){
+        
+        let moveLeft = SKAction.moveTo(x: -100, duration: duration)
+        let respawn = SKAction.moveTo(x: x2, duration: 0)
+        _ = SKAction.wait(forDuration: 10.0)
+        let wait = SKAction.wait(forDuration: 10.0)
+        let remove = SKAction.removeFromParent()
+        
+        let moveSequence = SKAction.sequence([wait, moveLeft, respawn])
+        myName = SKSpriteNode(imageNamed: imageName)
+        myName.setScale(setScale)
+        myName.position = CGPoint(x: x, y:y)
+        myName.zPosition = 1
+        
+        addChild(myName)
+        myName.run(SKAction.repeatForever(moveSequence))
+        
+    }
+    
     
     override func didMove(to view: SKView) {
         
@@ -52,6 +72,8 @@ class MenuScene: SKScene{
         generateCloud(myName: &cloudNode2, imageName: "Cloud2", x: 600, y: 700, x2: 600, duration: 60)
         generateCloud(myName: &cloudNode3, imageName: "Cloud3", x: 600, y: 750, x2: 650, duration: 70)
         generateCloud(myName: &cloudNode4, imageName: "Cloud4", x: 700, y: 600, x2: 700, duration: 90)
+        
+        spawnShip(myName: &spaceShipNode, imageName: "AlienShip", setScale: 0.2, x: 570 , y: 670, x2: 500, duration: 20)
         
             RecycleHeros = SKSpriteNode(imageNamed: "RecycleHeroText")
             RecycleHeros.position = CGPoint(x: frame.width/2, y:frame.height/1.3)

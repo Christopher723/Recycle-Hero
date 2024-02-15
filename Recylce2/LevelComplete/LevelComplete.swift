@@ -85,8 +85,8 @@ class LevelComplete: SKScene{
         if let location = touch?.location(in: self){
             let nodesArray = self.nodes(at: location)
             if nodesArray.first?.name == "nextButton"{
-                let levelSelect = LevelSelect(size: self.size)
-                self.view?.presentScene(levelSelect)
+                let worldSelect = WorldSelect(size: self.size)
+                self.view?.presentScene(worldSelect)
             }
             
             else if nodesArray.first?.name == "playAgain"{

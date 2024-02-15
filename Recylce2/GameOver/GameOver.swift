@@ -55,8 +55,8 @@ class GameOver: SKScene{
         if let location = touch?.location(in: self){
             let nodesArray = self.nodes(at: location)
             if nodesArray.first?.name == "levelSelectButton"{
-                let levelSelect = LevelSelect(size: self.size)
-                self.view?.presentScene(levelSelect)
+                let WorldSelect = WorldSelect(size: self.size)
+                self.view?.presentScene(WorldSelect)
             }
             
             else if nodesArray.first?.name == "playAgain"{

@@ -12,11 +12,13 @@ import AVKit
 class GameScene: SKScene {
     var conveyer: SKSpriteNode!
     var textures: [SKTexture] = []
+    var backgroundSky: SKSpriteNode!
     
     var greenBox: SKSpriteNode!
     var blueBox: SKSpriteNode!
     var yellowBox: SKSpriteNode!
     var trashBin : SKSpriteNode!
+    
     
     var paperStack: SKSpriteNode!
     var waterBottle: SKSpriteNode!
@@ -75,7 +77,14 @@ class GameScene: SKScene {
     
     
     override func didMove(to view: SKView) {
-        self.backgroundColor = UIColor(red: 145/255, green: 217/255, blue: 255/255, alpha: 1.0)
+//        self.backgroundColor = UIColor(red: 145/255, green: 217/255, blue: 255/255, alpha: 1.0)
+        backgroundSky = SKSpriteNode(imageNamed: "DaySky")
+        backgroundSky.name = "backgroundSky"
+        backgroundSky.position = CGPoint(x: self.frame.width/2.0, y: self.frame.height/1.7)
+        backgroundSky.zPosition = -10
+        self.addChild(backgroundSky)
+        
+        
         setupGame()
         
         
@@ -94,11 +103,12 @@ class GameScene: SKScene {
     func setUpHowToPlay2(){
         howToPlay2 = SKSpriteNode(imageNamed: "HowToPlay2")
         howToPlay2.name = "howToPlay2"
+       
         howToPlay2.position = CGPoint(x: self.frame.width/2.0, y: self.frame.height/2.0)
         howToPlay2.zPosition = 59
         
         howToPlay2Exit  = SKSpriteNode(imageNamed: "PauseMenuExit")
-        howToPlay2Exit.position = CGPoint(x: 130, y: 260)
+        howToPlay2Exit.position = CGPoint(x: 125, y: 245)
         howToPlay2Exit.zPosition = 70
         howToPlay2Exit.name = "howToPlay2Exit"
         
@@ -490,7 +500,7 @@ class GameScene: SKScene {
 //        targetSquare.setScale(0.2)
 //        addChild(targetSquare)
 //    }
-    func setUpBox(myBox: inout SKSpriteNode!, name: String, imageName: String, x: Int = 100, y: Int = 500, zPosition: Int = 0 , myScale: CGFloat = 1){
+    func setUpBox(myBox: inout SKSpriteNode!, name: String, imageName: String, x: Int = 100, y: Int = 550, zPosition: Int = 0 , myScale: CGFloat = 1){
         myBox = SKSpriteNode(imageNamed: imageName)
         myBox.position = CGPoint(x: x ,y: y)
         myBox.zPosition = CGFloat(zPosition) // Place the square below the circle
