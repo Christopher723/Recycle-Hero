@@ -27,6 +27,7 @@
 		3AB4F8FA2B69820B00D771CF /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F8F92B69820B00D771CF /* GameOver.swift */; };
 		3AB4F8FD2B6ACEB200D771CF /* LevelComplete.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3AB4F8FC2B6ACEB200D771CF /* LevelComplete.sks */; };
 		3AB4F8FF2B6ACEBB00D771CF /* LevelComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F8FE2B6ACEBB00D771CF /* LevelComplete.swift */; };
+		61CE66F02B7EADAE0047C36F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 61CE66EF2B7EADAE0047C36F /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		3AB4F8F92B69820B00D771CF /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
 		3AB4F8FC2B6ACEB200D771CF /* LevelComplete.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelComplete.sks; sourceTree = "<group>"; };
 		3AB4F8FE2B6ACEBB00D771CF /* LevelComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelComplete.swift; sourceTree = "<group>"; };
+		61CE66EF2B7EADAE0047C36F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		3AAE46F22B5D7B320077A856 = {
 			isa = PBXGroup;
 			children = (
+				61CE66EF2B7EADAE0047C36F /* .gitignore */,
 				3AAE46FD2B5D7B320077A856 /* Recylce2 */,
 				3AAE46FC2B5D7B320077A856 /* Products */,
 			);
@@ -225,6 +228,7 @@
 				3AB4F8F22B69759700D771CF /* WorldSelect.sks in Resources */,
 				3AB4F8F82B6981FD00D771CF /* GameOver.sks in Resources */,
 				3AAE470A2B5D7B320077A856 /* Main.storyboard in Resources */,
+				61CE66F02B7EADAE0047C36F /* .gitignore in Resources */,
 				3A41CBA62B6C38A800617FF9 /* LevelPreview.sks in Resources */,
 				3AAE47012B5D7B320077A856 /* GameScene.sks in Resources */,
 				3A887FFE2B5F358200003C67 /* LevelSelect.sks in Resources */,
