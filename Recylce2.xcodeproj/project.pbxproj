@@ -53,6 +53,7 @@
 		3AB4F8FC2B6ACEB200D771CF /* LevelComplete.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelComplete.sks; sourceTree = "<group>"; };
 		3AB4F8FE2B6ACEBB00D771CF /* LevelComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelComplete.swift; sourceTree = "<group>"; };
 		61CE66EF2B7EADAE0047C36F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		61CE66F12B7EAE1A0047C36F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +106,7 @@
 		3AAE46F22B5D7B320077A856 = {
 			isa = PBXGroup;
 			children = (
+				61CE66F12B7EAE1A0047C36F /* README.md */,
 				61CE66EF2B7EADAE0047C36F /* .gitignore */,
 				3AAE46FD2B5D7B320077A856 /* Recylce2 */,
 				3AAE46FC2B5D7B320077A856 /* Products */,
