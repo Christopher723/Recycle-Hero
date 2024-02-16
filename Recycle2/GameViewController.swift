@@ -1,6 +1,6 @@
 //
 //  GameViewController.swift
-//  Recylce2
+//  Recycle2
 //
 //  Created by Christopher Woods on 1/21/24.
 //
@@ -36,4 +36,5 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
 }

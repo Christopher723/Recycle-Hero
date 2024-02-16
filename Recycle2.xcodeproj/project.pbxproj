@@ -27,6 +27,7 @@
 		3AB4F8FA2B69820B00D771CF /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F8F92B69820B00D771CF /* GameOver.swift */; };
 		3AB4F8FD2B6ACEB200D771CF /* LevelComplete.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3AB4F8FC2B6ACEB200D771CF /* LevelComplete.sks */; };
 		3AB4F8FF2B6ACEBB00D771CF /* LevelComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4F8FE2B6ACEBB00D771CF /* LevelComplete.swift */; };
+		61CE66F02B7EADAE0047C36F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 61CE66EF2B7EADAE0047C36F /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		3AB4F8F92B69820B00D771CF /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
 		3AB4F8FC2B6ACEB200D771CF /* LevelComplete.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelComplete.sks; sourceTree = "<group>"; };
 		3AB4F8FE2B6ACEBB00D771CF /* LevelComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelComplete.swift; sourceTree = "<group>"; };
+		61CE66EF2B7EADAE0047C36F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		61CE66F12B7EAE1A0047C36F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +106,9 @@
 		3AAE46F22B5D7B320077A856 = {
 			isa = PBXGroup;
 			children = (
-				3AAE46FD2B5D7B320077A856 /* Recylce2 */,
+				61CE66F12B7EAE1A0047C36F /* README.md */,
+				61CE66EF2B7EADAE0047C36F /* .gitignore */,
+				3AAE46FD2B5D7B320077A856 /* Recycle2 */,
 				3AAE46FC2B5D7B320077A856 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,7 +121,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3AAE46FD2B5D7B320077A856 /* Recylce2 */ = {
+		3AAE46FD2B5D7B320077A856 /* Recycle2 */ = {
 			isa = PBXGroup;
 			children = (
 				3AAE46FE2B5D7B320077A856 /* AppDelegate.swift */,
@@ -133,7 +138,7 @@
 				3AAE470D2B5D7B330077A856 /* LaunchScreen.storyboard */,
 				3A41CBAB2B6D722800617FF9 /* backgroundMusic.mp3 */,
 			);
-			path = Recylce2;
+			path = Recycle2;
 			sourceTree = "<group>";
 		};
 		3AB4F8F52B6975F200D771CF /* WorldSelect */ = {
@@ -198,7 +203,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3AAE46F62B5D7B320077A856 /* Build configuration list for PBXProject "Recylce2" */;
+			buildConfigurationList = 3AAE46F62B5D7B320077A856 /* Build configuration list for PBXProject "Recycle2" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -225,6 +230,7 @@
 				3AB4F8F22B69759700D771CF /* WorldSelect.sks in Resources */,
 				3AB4F8F82B6981FD00D771CF /* GameOver.sks in Resources */,
 				3AAE470A2B5D7B320077A856 /* Main.storyboard in Resources */,
+				61CE66F02B7EADAE0047C36F /* .gitignore in Resources */,
 				3A41CBA62B6C38A800617FF9 /* LevelPreview.sks in Resources */,
 				3AAE47012B5D7B320077A856 /* GameScene.sks in Resources */,
 				3A887FFE2B5F358200003C67 /* LevelSelect.sks in Resources */,
@@ -454,7 +460,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3AAE46F62B5D7B320077A856 /* Build configuration list for PBXProject "Recylce2" */ = {
+		3AAE46F62B5D7B320077A856 /* Build configuration list for PBXProject "Recycle2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3AAE47102B5D7B330077A856 /* Debug */,

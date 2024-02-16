@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Recylce2
+//  Recycle2
 //
 //  Created by Christopher Woods on 1/21/24.
 //
@@ -11,7 +11,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -37,4 +36,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
